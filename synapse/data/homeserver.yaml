@@ -11,4 +11,15 @@ listeners:
       - names: [client, federation]
         compress: false
 ## Registration ##
-enable_registration: true 
+enable_registration: true
+
+## Database ##
+database:
+  name: psycopg2
+  args:
+    user: synapse
+    password: somepassword
+    host: postgresql
+    database: synapse
+    cp_min: 5
+    cp_max: 10

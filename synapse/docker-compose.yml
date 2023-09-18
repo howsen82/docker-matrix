@@ -17,10 +17,27 @@ services:
       SYNAPSE_REPORT_STATS: "yes"
     networks: ["matrix"]
 
+  postgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: somepassword
+      POSTGRES_USER: synapse
+      POSTGRES_DB: synapse
+      POSTGRES_INITDB_ARGS: "--encoding='UTF8' --lc-collate='C' --lc-ctype='C'"
+    volumes:
+      - "postgresdata:/var/lib/postgresql/"
+    networks: ["matrix"]
+
 networks:
   matrix:
     external: true
 
+volumes:
+  postgresdata:
 # Generate the configuration file
 # docker-compose run --rm synapse generate
+# docker-compose up -d
+
+# docker-compose down
 # docker-compose up -d
