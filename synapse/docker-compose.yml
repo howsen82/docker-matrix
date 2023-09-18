@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  synapse:
+    container_name: synapse
+    image: matrixdotorg/synapse:latest
+    volumes:
+      - "./data:/data"
+    environment:
+      # Replace this with your domain
+      VIRTUAL_HOST: "sub.domain.com"
+      VIRTUAL_PORT: 8008
+      # Replace this with your domain
+      LETSENCRYPT_HOST: "sub.domain.com"
+      # Replace this with your domain
+      SYNAPSE_SERVER_NAME: "sub.domain.com"
+      SYNAPSE_REPORT_STATS: "yes"
+    networks: ["matrix"]
+
+networks:
+  matrix:
+    external: true
+
+# Generate the configuration file
+# docker-compose run --rm synapse generate
+# docker-compose up -d

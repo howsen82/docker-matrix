@@ -1,0 +1,14 @@
+## Server ##
+server_name: "sub.domain.com"
+## TLS-enabled listener: for when matrix traffic is sent directly to synapse. ##
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+
+    resources:
+      - names: [client, federation]
+        compress: false
+## Registration ##
+enable_registration: true 
